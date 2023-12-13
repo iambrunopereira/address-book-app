@@ -1,5 +1,11 @@
+import { config } from "@/configs";
+import { Metadata, NextPage } from "next/types";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: `Home Page | ${config.appName}`,
+};
+
+const Page: NextPage = () => {
   return (
     <main >
       <div >
@@ -9,4 +15,6 @@ export default function Home() {
       </div>
     </main>
   )
-}
+};
+
+export default Page;
