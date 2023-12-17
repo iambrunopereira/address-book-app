@@ -40,7 +40,7 @@ const Frame: FC<Props> = ({ children }) => {
                 display: "flex",
               }}
             > 
-              <Button variant="clear">X</Button>
+              <Button variant="clear" onClick={() => dispatch(menuToggle())}>X</Button>
             </div>
           </div>
           <Divisor />
