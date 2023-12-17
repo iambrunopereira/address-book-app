@@ -1,7 +1,5 @@
 "use client";
-import '@/i18n';
 import StoreProvider from "@/providers/StoreProvider";
-import '@/theme/globals.css';
 import { type FC, type ReactNode } from "react";
 
 interface LayoutProps {
