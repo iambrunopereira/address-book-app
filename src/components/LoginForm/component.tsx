@@ -4,29 +4,37 @@ import { CookieManager } from '@/utils/cookies';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Box from '../common/Box';
-import { Button } from '../common/Button2';
+import { Button } from '../common/Button';
 import styles from './component.module.scss';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [userLogin] = useUserLoginMutation();
     const router = useRouter();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Implement your login logic here
-        // For example, sending email and password to your authentication API
+
+        setError('');
+
+        // Example validation
+        if (!email || !password) {
+            setError('Email and password are required');
+            return;
+        }
+
         userLogin({email, password})
         .unwrap()
         .then((res) => {
             if(res.data.id_token){
                 CookieManager.set('token', res.data.id_token, 7);
-                
+
                 router.push('/');
             }
         }).catch((error: Error) => {
-          console.error(error);
+            setError('Login failed. Please try again.');
         });
     };
 
@@ -54,11 +62,12 @@ const LoginForm = () => {
                             required
                         />
                     </div>
+                    {error && <div className={styles.errorMessage}>{error}</div>}
                     <Box>
-                        <Button variant='link' onClick={() => router.push('/forgot-password')} style={{marginLeft: '1rem'}}>Forgot password?</Button>
+                        <Button variant='link' onClick={() => router.push('/forgot-password')} style={{display: 'flex', justifyContent: 'flex-end'}}>Forgot password?</Button>
                     </Box>
                     <Box flex flexDirection='row' justifyContent='space-between' style={{marginTop: '1rem'}}>
-                        <Button variant='primary' type="submit" style={{marginLeft: '1rem'}}>Login</Button>
+                        <Button variant='primary' type="submit">Login</Button>
                         <Button variant='secondary' onClick={() => router.push('/register')} style={{marginLeft: '1rem'}}>Signup</Button>
                     </Box>
                     

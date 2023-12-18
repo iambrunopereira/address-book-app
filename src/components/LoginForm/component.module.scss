@@ -1,9 +1,10 @@
 .loginContainer {
-    max-width: 300px;
+    max-width: 600px;
+    width: 500px;
     margin: auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: white; // Optional: container background color
+    background-color: white; 
     border-radius: 4px;
     
     button {
@@ -21,11 +22,11 @@
     }
 }
 .loginPage {
-    height: 100vh; // Full viewport height
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; // Optional: background color
+    background-color: #f0f0f0; 
 }
 
 .inputGroup {
@@ -45,3 +46,7 @@
 }
 
 
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+}
