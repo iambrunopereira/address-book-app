@@ -1,0 +1,22 @@
+.dotsLoader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50px;
+
+    div {
+        width: 8px;
+        height: 8px;
+        background-color: #333;
+        border-radius: 50%;
+        animation: bounce 1.4s infinite ease-in-out both;
+
+        &:nth-child(1) { animation-delay: -0.32s; }
+        &:nth-child(2) { animation-delay: -0.16s; }
+    }
+
+    @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+    }
+}
