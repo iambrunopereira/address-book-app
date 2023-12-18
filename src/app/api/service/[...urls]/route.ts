@@ -6,14 +6,11 @@ import { NextRequest, NextResponse } from 'next/server';
 type Method = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH';
 
 const requestHandler = async (req: NextRequest, method: Method, url: string, body: any, header: any) => {
-    //const session = await getSession(req, new NextResponse());
+
     const cookieStore = cookies()
 
-  const {value} = cookieStore.get('token') ?? {}
+    const {value} = cookieStore.get('token') ?? {}
 
-    if (!value) {
-        return NextResponse.json({}, { status: 401 });
-    } 
     const headerParams = value ? {
       ...header,
       'Content-Type': 'application/json',
