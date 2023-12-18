@@ -1,8 +1,8 @@
-import styles from './component.module.scss';
 
 // Define a type for the Box props
 type BoxProps = {
     children: React.ReactNode;
+    elementType?: keyof JSX.IntrinsicElements;
     m?: string;
     p?: string;
     flex?: boolean;
@@ -15,6 +15,7 @@ type BoxProps = {
 
 const Box = ({
     children,
+    elementType = 'div',
     m,
     p,
     flex,
@@ -23,6 +24,7 @@ const Box = ({
     alignItems,
     style,
     ...props
+    
 }: BoxProps) => {
     const combinedStyle: React.CSSProperties = {
         margin: m,
@@ -33,12 +35,9 @@ const Box = ({
         alignItems,
         ...style,
     };
-
-    return (
-        <div className={styles.box} style={combinedStyle} {...props}>
-            {children}
-        </div>
-    );
+    const Element = elementType;
+    return <Element style={combinedStyle} {...props}>{children}</Element>;
+    
 };
 
 export default Box;

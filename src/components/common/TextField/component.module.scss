@@ -1,0 +1,28 @@
+.textField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+    
+    input:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+    
+    .error {
+        border-color: #dc3545;
+    }
+    
+    .errorMessage {
+        color: #dc3545;
+        margin-top: 5px;
+    }
+}
+
+
