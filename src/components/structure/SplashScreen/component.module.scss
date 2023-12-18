@@ -1,0 +1,14 @@
+.splashScreen {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1400;
+}
