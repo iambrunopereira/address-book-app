@@ -1,10 +1,9 @@
-@import '~@fontsource/roboto-mono/300.css';
-@import '~@fontsource/roboto-mono/400.css';
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600,700);
 
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: '\'Roboto Mono\', Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace';
+  --font-mono: "Roboto", sans-serif;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
