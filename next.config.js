@@ -12,7 +12,17 @@ const nextConfig = {
     },
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
-      },
-}
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'randomuser.me',
+                port: '',
+                pathname: '/api/**',
+            },
+        ],
+    },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
