@@ -1,9 +1,10 @@
-import styles from './Typography.module.scss';
+import styles from './component.module.scss';
 
 type TypographyProps = {
     children: React.ReactNode;
     variant?: 'h1' | 'h2' | 'h3' | 'body1' | 'body2' | 'caption';
     className?: string;
+    style?: React.CSSProperties;
 };
 
 const variantToTagMap: { [key: string]: keyof JSX.IntrinsicElements } = {
@@ -15,9 +16,9 @@ const variantToTagMap: { [key: string]: keyof JSX.IntrinsicElements } = {
     caption: 'span'
 };
 
-const Typography = ({ children, variant = 'body1', className = '' }: TypographyProps) => {
+const Typography = ({ children, variant = 'body1', className = '', style }: TypographyProps) => {
     const Component = variantToTagMap[variant];
-    return <Component className={`${styles[variant]} ${className}`}>{children}</Component>;
+    return <Component className={`${styles[variant]} ${className}`} style={style}>{children}</Component>;
 };
 
 export default Typography;

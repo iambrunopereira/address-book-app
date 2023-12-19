@@ -77,6 +77,7 @@
     .main {
       flex-grow: 1;
       padding: var(--default-container-padding);
+      min-height: calc(100vh - 4rem);
       &.menuIsOpen {
         margin-left: var(--menu-size);
       }

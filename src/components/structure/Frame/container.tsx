@@ -1,6 +1,6 @@
 'use client';
 
-import { Divisor } from '@/components';
+import Box from '@/components/common/Box';
 import { Button } from '@/components/common/Button';
 import { config } from '@/configs';
 import { menuToggle } from '@/store/slices/settingsSlice';
@@ -41,25 +41,36 @@ const Frame: FC<Props> = ({ children }) => {
             </nav>
             <div className={styles.contentContainer}>
                 <aside className={`${styles.sidebar} ${!menuOpened ? styles.close : ''}`}>
-                    <div
-                        style={{
+                <Box
+                        onClick={() => router.push('/')}
+                        sx={{
                             display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'flex-end',
+                            p: '4px',
+                            textDecoration: 'none',
                         }}
                     >
-                        <div
-                            style={{
-                                justifyContent: 'flex-end',
-                                display: 'flex',
-                            }}
-                        >
-                            <Button variant="clear" onClick={() => dispatch(menuToggle())}>
-                                X
-                            </Button>
-                        </div>
-                    </div>
-                    <Divisor />
+                        Home
+                    </Box>
+                    <Box
+                        onClick={() => router.push('/favorites')}
+                        sx={{
+                            display: 'flex',
+                            p: '4px',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        Favorites
+                    </Box>
+                <Box
+                        onClick={() => router.push('/settings')}
+                        sx={{
+                            display: 'flex',
+                            p: '4px',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        Settings
+                    </Box>
                 </aside>
                 <main className={`${styles.main} ${menuOpened ? styles.menuIsOpen : ''}`}>{children}</main>
             </div>
