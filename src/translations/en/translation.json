@@ -1,0 +1,9 @@
+{
+    
+    "search_page":{
+        "search_input": {
+            "label":"Search Users",
+            "placeholder": "You can search users here..."
+        }
+    }
+}
