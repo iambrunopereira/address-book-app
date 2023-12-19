@@ -1,0 +1,14 @@
+.genderFilter {
+    display: flex;
+    margin-bottom: 20px;
+
+    label {
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+
+        input {
+            margin-right: 5px;
+        }
+    }
+}
