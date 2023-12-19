@@ -3,6 +3,7 @@ import { Users } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { Button } from "../common/Button";
 import { Modal } from "../common/Modal";
 import styles from "./component.module.scss";
 
@@ -12,11 +13,13 @@ interface User extends Users {
 
 type UserCardProps = {
   user: User;
+  handler: (isFavorite: boolean, repositoryInfo: Users) => void;
 };
 
-const UserCard = ({ user }: UserCardProps) => {
+const UserCard = ({ user, handler }: UserCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  
   return (
     <>
       <div className={styles.userCard} onClick={() => setIsModalOpen(true)}>
@@ -46,6 +49,9 @@ const UserCard = ({ user }: UserCardProps) => {
         <p>Postcode: {user.address.postcode}</p>
         <p>Phone: {user.phone}</p>
         <p>Cell: {user.cell}</p>
+        <Button  onClick={() => handler(user.isFavorite, user)}>
+              {user.isFavorite ? 'Remove' : 'Add'}
+            </Button> 
       </Modal>
     </>
   );

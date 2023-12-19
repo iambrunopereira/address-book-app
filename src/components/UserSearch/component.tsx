@@ -1,9 +1,10 @@
 import UserCard from '@/components/UserCard/component';
-import { useFetchUsersQuery } from '@/store/services/usersApi';
+import { useFetchUserSearchQuery } from '@/store/services/usersApi';
 
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 
+import { Users } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Box from '../common/Box';
 import { Button } from '../common/Button';
@@ -17,9 +18,13 @@ import styles from './component.module.scss';
 interface UserSearchProps {
     settings: any;
     clearHandler: () => void;
+    nationalities: string[];
+    gender: string;
+    favorites: Users[];
+    favoritesHandler: (isFavorite: boolean, user: Users) => void;
 }
 
-const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandler, nationalities, gender}) => {
+const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandler, nationalities, gender, favorites, favoritesHandler}) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     /* const [nationalities, setNationalities] = useState<string[]>([]);
     const [gender, setGender] = useState<string>('all'); */
@@ -32,7 +37,7 @@ const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandle
     const searchParams = useSearchParams()
     const { menuOpened } = settings;
 
-    const { data, isLoading, isFetching, refetch } = useFetchUsersQuery({
+    const { data, isLoading, isFetching, refetch } = useFetchUserSearchQuery({
         name: debouncedSearchTerm,
         filter: { nextPage, nationalities, gender }
     }, {refetchOnMountOrArgChange: true});
@@ -141,15 +146,16 @@ const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandle
                         }}
                     >
                         {listUsers.map((user, idx) => {
+                            const favoriteUser = favorites.find((favUser: Users) => favUser.id === user.id);
                             return (
                                 <GridItem key={`user-card-${idx}`} flexGrow={1}>
-                                    <UserCard user={user} />
+                                    <UserCard user={{...user, isFavorite: !!favoriteUser}} handler={favoritesHandler}  />
                                 </GridItem>
                             );
                         })}
                     </Grid>
-                    {listUsers.length === 0 && !data?.moreData && <Typography style={{marginTop: "0.5rem"}}>No data available...</Typography>}
-                    {listUsers.length !== 0 && !data?.moreData && <Typography style={{marginTop: "0.5rem"}}>you reach the end of the data...</Typography>}
+                    {(!isLoading && !isFetching) && data?.data.length === 0 && !data?.moreData && <Typography style={{marginTop: "0.5rem"}}>No data available...</Typography>}
+                    {(!isLoading && !isFetching) && data?.data.length !== 0 && !data?.moreData && <Typography style={{marginTop: "0.5rem"}}>you reach the end of the data...</Typography>}
                 </InfiniteScroll>
             </Box>
         </>
