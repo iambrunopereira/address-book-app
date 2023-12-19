@@ -14,6 +14,7 @@ import { InfiniteScroll } from '../common/InfiniteScroll';
 import { TextField } from '../common/TextField';
 import { Typography } from '../common/Typography';
 import styles from './component.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface UserSearchProps {
     settings: any;
@@ -26,12 +27,10 @@ interface UserSearchProps {
 
 const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandler, nationalities, gender, favorites, favoritesHandler}) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
-    /* const [nationalities, setNationalities] = useState<string[]>([]);
-    const [gender, setGender] = useState<string>('all'); */
     const [searchTermDirty, setSearchTermDirty] = useState<boolean>(false);
     const [listUsers, setListUsers] = useState<any[]>([]);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
-
+    const { t } = useTranslation();
     const [nextPage, setNextPage] = useState(1);
     const router = useRouter();
     const searchParams = useSearchParams()
@@ -97,8 +96,8 @@ const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandle
         <>
             <Box className={`${styles.userSearchWrapper} ${menuOpened ? styles.menuOpened : ''}`}>
                 <TextField
-                    label={'Search Users'}
-                    placeholder="Search Users"
+                    label={t(`search_page__search_input__label`)}
+                    placeholder={t(`search_page__search_input__placeholder`)}
                     name="searchTerm"
                     value={searchTerm}
                     onChange={e => {
