@@ -1,26 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
 
-interface SettingsState {
-  menuOpened: boolean;
-  nationalities: string[];
-}
+import { Gender, SettingsState } from '@/types/store';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export const settingsSlice = createSlice({
-  name: 'settings',
-  initialState: {
-    menuOpened: true,
-    nationalities: [],
-  } as SettingsState,
-  reducers: {
-    menuToggle: (state) => {
-      state.menuOpened = !state.menuOpened;
-    },
-    nationalitiesSet: (state, action) => {
-      state.nationalities = action.payload;
-    }
+const initialState: SettingsState = {
+  menuOpened: true,
+  nationalities: [],
+  gender: Gender.All,
+};
+
+const reducers = {
+  menuToggle: (state: SettingsState) => {
+    state.menuOpened = !state.menuOpened;
   },
+  setNationalities: (state: SettingsState, action: PayloadAction<string[]>) => {
+    state.nationalities = action.payload;
+  },
+  setGender: (state: SettingsState, action: PayloadAction<Gender>) => {
+    state.gender = action.payload;
+  },
+};
+
+const settingsSlice = createSlice({
+  name: 'settings',
+  initialState,
+  reducers,
 });
 
-export const { menuToggle, nationalitiesSet } = settingsSlice.actions;
-
+export const { menuToggle, setNationalities, setGender } = settingsSlice.actions;
 export default settingsSlice.reducer;
