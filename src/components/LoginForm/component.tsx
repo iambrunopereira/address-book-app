@@ -28,8 +28,8 @@ const LoginForm = () => {
         userLogin({email, password})
         .unwrap()
         .then((res) => {
-            if(res.data.id_token){
-                CookieManager.set('token', res.data.id_token, 7);
+            if(res.data.access_token){
+                CookieManager.set('token', res.data.access_token, 7);
 
                 router.push('/');
             }
