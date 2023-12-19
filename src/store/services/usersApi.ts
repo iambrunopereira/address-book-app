@@ -13,9 +13,9 @@ export const users = createApi({
   }),
   endpoints: (builder) => ({
     fetchUsers: builder.query({
-      query: ({ name, filter, first }) => {
+      query: ({ name, filter }) => {
         return {
-          url: "/search2?" + buildUrlQueryParams({ name, ...filter }),
+          url: "/search2?" + buildUrlQueryParams({ name, nextPage: filter.nextPage, nat: filter.nationalities, gender: filter.gender }),
           method: "GET",
         };
       },
