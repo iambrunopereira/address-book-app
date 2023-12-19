@@ -12,7 +12,7 @@ export const users = createApi({
     prepareHeaders,
   }),
   endpoints: (builder) => ({
-    fetchUsers: builder.query({
+    fetchUserSearch: builder.query({
       query: ({ name, filter }) => {
         return {
           url: "/search2?" + buildUrlQueryParams({ name, nextPage: filter.nextPage, nat: filter.nationalities, gender: filter.gender }),
@@ -20,7 +20,36 @@ export const users = createApi({
         };
       },
     }),
+    fetchUserFavorites: builder.query({
+      query: () => {
+        return {
+          url: "/user/favorites",
+          method: "POST",
+          body: {}
+        };
+      },
+      
+    }), 
+    addFavoriteUser: builder.mutation({
+      query: (userId) => ({
+        url: '/user/add',
+        method: 'POST',
+        body: {
+          user_id: userId,
+        },
+      }),
+      
+    }),
+    removeFavoriteUser: builder.mutation({
+      query: (userId) => ({
+        url: '/user/remove',
+        method: 'POST',
+        body: {
+          user_id: userId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useFetchUsersQuery } = users;
+export const { useFetchUserSearchQuery, useFetchUserFavoritesQuery, useAddFavoriteUserMutation, useRemoveFavoriteUserMutation } = users;
