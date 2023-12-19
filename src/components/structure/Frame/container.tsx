@@ -3,6 +3,8 @@
 import Box from '@/components/common/Box';
 import { Button } from '@/components/common/Button';
 import { config } from '@/configs';
+import { useFetchUserFavoritesQuery } from '@/store/services/usersApi';
+import { addFavoritesList } from '@/store/slices/favoritesSlice';
 import { menuToggle } from '@/store/slices/settingsSlice';
 import { useDispatch, useSelector } from '@/store/store';
 import Image from 'next/image';
