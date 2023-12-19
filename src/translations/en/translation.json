@@ -5,5 +5,11 @@
             "label":"Search Users",
             "placeholder": "You can search users here..."
         }
+    },
+    "languages": {
+        "options": {
+           "portuguese": "Portuguese",
+           "english": "English" 
+        }
     }
 }
