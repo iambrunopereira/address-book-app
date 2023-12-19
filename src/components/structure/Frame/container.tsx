@@ -9,7 +9,7 @@ import { menuToggle } from '@/store/slices/settingsSlice';
 import { useDispatch, useSelector } from '@/store/store';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { RiMenuFill, RiMenuFoldLine } from 'react-icons/ri';
 import styles from './container.module.scss';
@@ -19,9 +19,18 @@ interface Props {
 }
 
 const Frame: FC<Props> = ({ children }) => {
+   
     const { menuOpened } = useSelector(state => state.settings);
     const dispatch = useDispatch();
     const router = useRouter();
+    const { data } = useFetchUserFavoritesQuery({});
+   
+    useEffect(() => {
+        if (data) {
+            dispatch(addFavoritesList(data?.data));
+        }
+  
+    }, [data]);
     return (
         <div className={styles.appContainer}>
             <nav className={styles.nav}>
