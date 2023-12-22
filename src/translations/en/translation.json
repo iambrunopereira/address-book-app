@@ -1,5 +1,9 @@
 {
-    
+    "general": {
+        "buttons": {
+            "back_button": "Back"
+        }
+    },
     "search_page":{
         "search_input": {
             "label":"Search Users",
@@ -10,6 +14,50 @@
         "options": {
            "portuguese": "Portuguese",
            "english": "English" 
+        }
+    },
+    "menu":{
+        "options": {
+            "home": "Home",
+            "favorites": "Favorites"
+        }
+    },
+    "favorites_page": {
+        "title": "My Favorites",
+        "no_data": "You don't have any favorite contact..."
+    },
+    "filters":{
+        "nationalities_label": "Nationalities",
+        "nationalities_input_label": "Select Nationalities",
+        "gender_label": "Gender",
+        "gender_input_label": "Select Gender",
+        "no_filters_label": "No filters selected...",
+        "gender_options": {
+            "male": "Male",
+            "female": "Female",
+            "all": "All"
+        },
+        "buttons":{
+            "clear": "Clear",
+            "manage": "Manage",
+            "add": "Add Filters"
+
+        }
+    },
+    "modal":{
+        "labels": {
+            "address": "Address",
+            "street": "Street",
+            "city": "City",
+            "state": "State",
+            "postcode": "Postcode",
+            "contact": "Contact",
+            "phone": "Phone",
+            "cell": "Cell"
+        },
+        "buttons": {
+            "add_to_favorites": "Add to favorites",
+            "remove_from_favorites": "Remove from favorites"
         }
     }
 }

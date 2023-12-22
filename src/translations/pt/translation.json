@@ -1,5 +1,9 @@
 {
-    
+    "general": {
+        "buttons": {
+            "back_button": "Voltar"
+        }
+    },
     "search_page":{
         "search_input": {
             "label":"Procurar utilizador",
@@ -8,8 +12,52 @@
     },
     "languages": {
         "options": {
-           "portuguese": "Portugues",
+           "portuguese": "Português",
            "english": "Inglês" 
+        }
+    },
+    "menu":{
+        "options": {
+            "home": "Inicio",
+            "favorites": "Favoritos"
+        }
+    },
+    "favorites_page": {
+        "title": "Os meus favoritos",
+        "no_data": "Não tem nenhum contacto favorito..."
+    },
+    "filters":{
+        "nationalities_label": "Nacionalidades:",
+        "nationalities_input_label": "Selecciona as nacionalidades",
+        "gender_label": "Genero",
+        "gender_input_label": "Escolha um genero",
+        "no_filters_label": "Nenhum filtro foi seleccionado...",
+        "gender_options": {
+            "male": "Masculino",
+            "female": "Feminino",
+            "all": "Todos"
+        },
+        "buttons":{
+            "clear": "Limpar",
+            "manage": "Gerir",
+            "add": "Adicionar Filtros"
+
+        }
+    },
+    "modal":{
+        "labels": {
+            "address": "Morada",
+            "street": "Rua",
+            "city": "Cidade",
+            "state": "Estado",
+            "postcode": "Codigo Postal",
+            "contact": "Contacto",
+            "phone": "Telefone",
+            "cell": "Telemóvel"
+        },
+        "buttons": {
+            "add_to_favorites": "Adicionar os favoritos",
+            "remove_from_favorites": "Remover dos favoritos"
         }
     }
 }
