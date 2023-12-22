@@ -3,7 +3,7 @@
 import { Divisor } from "..";
 import GenderFilter from "../GenderFilter";
 import NationalitiesSelector from "../NationalitiesSelector";
-import { BackButton } from "../common/BackButton";
+import BackButton from "../common/BackButton";
 import Box from "../common/Box";
 
 

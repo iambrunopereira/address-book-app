@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './component.module.scss';
 
 type GenderFilterProps = {
@@ -9,7 +10,7 @@ type GenderFilterProps = {
 
 const GenderFilter = ({ defaultValue, onChange }: GenderFilterProps) => {
     const [selectedGender, setSelectedGender] = useState(defaultValue ?? 'all');
-
+    const { t }= useTranslation();
     const handleSelectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedGender(event.target.value);
         onChange(event.target.value);
@@ -17,7 +18,7 @@ const GenderFilter = ({ defaultValue, onChange }: GenderFilterProps) => {
 
     return (
         <>
-            <h3>Select Gender</h3>
+            <h3>{t(`filters__gender_input_label`)}</h3>
             <form className={styles.genderFilter}>
                 <label>
                     <input
@@ -27,7 +28,7 @@ const GenderFilter = ({ defaultValue, onChange }: GenderFilterProps) => {
                         checked={selectedGender === 'all'}
                         onChange={handleSelectionChange}
                     />
-                    All
+                    {t(`filters__gender_options__all`)}
                 </label>
                 <label>
                     <input
@@ -37,7 +38,7 @@ const GenderFilter = ({ defaultValue, onChange }: GenderFilterProps) => {
                         checked={selectedGender === 'male'}
                         onChange={handleSelectionChange}
                     />
-                    Male
+                    {t(`filters__gender_options__male`)}
                 </label>
                 <label>
                     <input
@@ -47,7 +48,7 @@ const GenderFilter = ({ defaultValue, onChange }: GenderFilterProps) => {
                         checked={selectedGender === 'female'}
                         onChange={handleSelectionChange}
                     />
-                    Female
+                    {t(`filters__gender_options__female`)}
                 </label>
             </form>
         </>

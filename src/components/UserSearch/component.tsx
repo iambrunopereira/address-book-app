@@ -6,15 +6,15 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Users } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 import Box from '../common/Box';
-import { Button } from '../common/Button';
+import Button from '../common/Button';
 import { Grid } from '../common/Grid';
 import GridItem from '../common/GridItem/component';
 import { InfiniteScroll } from '../common/InfiniteScroll';
-import { TextField } from '../common/TextField';
+import TextField from '../common/TextField';
 import { Typography } from '../common/Typography';
 import styles from './component.module.scss';
-import { useTranslation } from 'react-i18next';
 
 interface UserSearchProps {
     settings: any;
@@ -108,24 +108,24 @@ const UsersSearchComponent: React.FC<UserSearchProps> = ({ settings, clearHandle
                     {(nationalities.length > 0 || gender !== 'all') ? (
                         <>
                             <Box flex>
-                              {nationalities.length > 0 && <Typography style={{marginRight: '1rem'}}><strong>Nationalities:</strong> {nationalities.toString()}</Typography>}
-                              {gender != 'all' && <Typography><strong>Gender:</strong> {gender}</Typography>}
+                              {nationalities.length > 0 && <Typography variant='body2' style={{marginRight: '1rem'}}><strong>{t(`filters__nationalities_label`)}</strong> {nationalities.toString()}</Typography>}
+                              {gender != 'all' && <Typography  variant='body2'><strong>{t(`filters__gender_label`)}</strong> {t(`filters__gender_options__${gender}`)}</Typography>}
                             </Box>
                             <Box>
                                 <Button variant="link" onClick={clearFilterAndRefetchData} style={{marginRight: '0.5rem'}}>
-                                    Clear
+                                    <Typography  variant='body2'>{t(`filters__buttons__clear`)}</Typography>
                                 </Button>
                                 <Button variant="link" onClick={() => router.push('/settings')}>
-                                    Manage
+                                    <Typography  variant='body2'>{t(`filters__buttons__manage`)}</Typography>
                                 </Button>
                             </Box>
                         </>
                     ) : (
                         <>
-                            <Typography>No filters selected...</Typography>
+                            <Typography  variant='body2'>{t(`filters__no_filters_label`)}</Typography>
                             <Box>
                                 <Button variant="link" onClick={() => router.push('/settings')}>
-                                    Add Filters
+                                    <Typography  variant='body2'>{t(`filters__buttons__add`)}</Typography>
                                 </Button>
                             </Box>
                         </>

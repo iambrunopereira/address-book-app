@@ -22,5 +22,4 @@ describe('GridItem Component', () => {
         expect(container.firstChild).toHaveStyle('flex-basis: 50%');
     });
 
-    // Additional tests for other props can be added here
 });

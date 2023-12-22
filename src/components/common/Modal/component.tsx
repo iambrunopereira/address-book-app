@@ -1,4 +1,8 @@
+import { MdClose } from 'react-icons/md';
+import Box from '../Box';
+import Button from '../Button';
 import styles from './component.module.scss';
+import { Divisor } from '../Divisor';
 
 type ModalProps = {
     isOpen: boolean;
@@ -12,8 +16,13 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
             <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                <Box flex justifyContent="end" >
+                    <Button  variant="clear" onClick={onClose}>
+                        <MdClose />
+                    </Button> 
+                </Box>
+                <Divisor />
                 {children}
-                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );

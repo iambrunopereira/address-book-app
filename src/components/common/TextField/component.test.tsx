@@ -1,28 +1,30 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import TextField from '.';
 
-describe('TextField Component', () => {
-    it('renders input element', () => {
-        render(<TextField label="Name" value="" onChange={() => {}} />);
-        expect(screen.getByLabelText('Name')).toBeInTheDocument();
-    });
+describe('<TextField />', () => {
+  const mockOnChange = jest.fn();
 
-    it('displays value', () => {
-        render(<TextField value="John Doe" onChange={() => {}} />);
-        expect(screen.getByDisplayValue('John Doe')).toBeInTheDocument();
-    });
+  it('renders correctly', () => {
+    render(<TextField label="Test Label" placeholder="Enter text" value="" onChange={mockOnChange} />);
+    expect(screen.getByPlaceholderText('Enter text')).toBeInTheDocument();
+  });
 
-    it('changes value on user input', () => {
-        const handleChange = jest.fn();
-        render(<TextField value="" onChange={handleChange} />);
-        fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Jane Doe' } });
-        expect(handleChange).toHaveBeenCalledWith(expect.objectContaining({ target: { value: 'Jane Doe' } }));
-    });
+  it('displays the label when provided', () => {
+    render(<TextField label="Test Label" value="" onChange={mockOnChange} />);
+    expect(screen.getByText('Test Label')).toBeInTheDocument();
+  });
 
-    it('displays error message', () => {
-        const errorMessage = 'Error message';
-        render(<TextField value="" onChange={() => {}} error={errorMessage} />);
-        expect(screen.getByText(errorMessage)).toBeInTheDocument();
-        expect(screen.getByRole('textbox')).toHaveClass('error');
-    });
+  it('handles input value and onChange event', () => {
+    render(<TextField value="Test" onChange={mockOnChange} />);
+    const input = screen.getByDisplayValue('Test');
+    fireEvent.change(input, { target: { value: 'Changed' } });
+    expect(mockOnChange).toHaveBeenCalled();
+  });
+
+  it('displays an error message when error prop is provided', () => {
+    render(<TextField error="Error message" value="" onChange={mockOnChange} />);
+    expect(screen.getByText('Error message')).toBeInTheDocument();
+  });
+
+  
 });

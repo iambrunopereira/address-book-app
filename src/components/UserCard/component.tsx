@@ -2,9 +2,13 @@
 import { Users } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { Button } from "../common/Button";
+import { Divisor } from "..";
+import Box from "../common/Box";
+import Button from "../common/Button";
 import { Modal } from "../common/Modal";
+import { Typography } from "../common/Typography";
 import styles from "./component.module.scss";
 
 interface User extends Users {
@@ -13,16 +17,16 @@ interface User extends Users {
 
 type UserCardProps = {
   user: User;
-  handler: (isFavorite: boolean, repositoryInfo: Users) => void;
+  handler: (isFavorite: boolean, user: Users) => void;
 };
 
 const UserCard = ({ user, handler }: UserCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { t } = useTranslation();
   
   return (
     <>
-      <div className={styles.userCard} onClick={() => setIsModalOpen(true)}>
+      <div className={styles.userCard} onClick={() => setIsModalOpen(true)} data-testid="user-card">
         <div className={`${styles.favoriteIcon} ${true && styles.active}`}>
           {user.isFavorite ? <FaStar /> : <FaRegStar />}
         </div>
@@ -40,18 +44,22 @@ const UserCard = ({ user, handler }: UserCardProps) => {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h3>{`${user.firstName} ${user.lastName}`}</h3>
-        <p>Username: {user.fullName}</p>
-        <p>Email: {user.email}</p>
-        <p>Street: {user.address.street}</p>
-        <p>City: {user.address.city}</p>
-        <p>State: {user.address.state}</p>
-        <p>Postcode: {user.address.postcode}</p>
-        <p>Phone: {user.phone}</p>
-        <p>Cell: {user.cell}</p>
-        <Button  onClick={() => handler(user.isFavorite, user)}>
-              {user.isFavorite ? 'Remove' : 'Add'}
-            </Button> 
+      
+        <Typography variant="h3" style={{marginBottom: "0.5rem"}}>{`${user.firstName} ${user.lastName}`}</Typography>
+        <Typography variant="h4">{t(`modal__labels__address`)}</Typography>
+        <Typography variant="body1">{t(`modal__labels__street`)}: {user.address.street}</Typography>
+        <Typography variant="body1">{t(`modal__labels__city`)}: {user.address.city}</Typography>
+        <Typography variant="body1">{t(`modal__labels__state`)}: {user.address.state}</Typography>
+        <Typography variant="body1">{t(`modal__labels__postcode`)}: {user.address.postcode}</Typography>
+        <Typography variant="h4" style={{marginTop: "1rem"}}>{t(`modal__labels__contact`)}</Typography>
+        <Typography variant="body1">{t(`modal__labels__phone`)}: {user.phone}</Typography>
+        <Typography variant="body1">{t(`modal__labels__cell`)}: {user.cell}</Typography>
+        <Divisor />
+        <Box flex justifyContent="end" >
+          <Button  variant={user.isFavorite ? "menu" : "secondary"} onClick={() => handler(user.isFavorite, user)}>
+          {user.isFavorite ? t(`modal__buttons__remove_from_favorites`):t(`modal__buttons__add_to_favorites`)}
+          </Button> 
+        </Box>
       </Modal>
     </>
   );

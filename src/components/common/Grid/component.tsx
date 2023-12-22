@@ -1,4 +1,3 @@
-import styles from './component.module.scss';
 
 type GridProps = {
     children: React.ReactNode;
@@ -30,7 +29,7 @@ const Grid = ({
     };
 
     return (
-        <div className={styles.Grid} style={combinedStyle}>
+        <div style={combinedStyle}>
             {children}
         </div>
     );

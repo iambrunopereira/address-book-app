@@ -1,4 +1,4 @@
-import styles from './component.module.scss';
+
 
 type GridItemProps = {
     children: React.ReactNode;
@@ -23,7 +23,7 @@ const GridItem = ({
     };
 
     return (
-        <div className={styles.GridItem} style={combinedStyle}>
+        <div style={combinedStyle}>
             {children}
         </div>
     );

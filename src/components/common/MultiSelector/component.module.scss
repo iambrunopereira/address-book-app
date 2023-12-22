@@ -3,13 +3,23 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
-    width: 200px; // Adjust width as needed
+    width: 200px; 
     cursor: pointer;
     position: relative;
 }
 
 .selectedItems {
     min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+    span {
+        display: flex;
+        position:absolute;
+        right:0;
+    }
 }
 
 .optionsList {

@@ -3,7 +3,10 @@ import styles from './component.module.scss';
 type ButtonProps = {
     children: React.ReactNode;
     onClick?: () => void;
-    variant?: 'primary' | 'secondary' | 'danger' | 'link' | 'clear';
+    variant?: 'primary' | 'secondary' | 'danger' | 'link' | 'clear' | 'menu';
+    style?: React.CSSProperties;
+    type?: "button" | "submit" | "reset" | undefined;
+    disabled?: boolean
 };
 
 const Button = ({ children, onClick, variant = 'primary', ...props }: ButtonProps) => {

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Dropdown from '.';
+import { Dropdown } from '.';
+
 
 describe('Dropdown Component', () => {
     it('renders trigger element correctly', () => {
@@ -31,7 +32,6 @@ describe('Dropdown Component', () => {
     });
 
     it('closes when clicking outside', () => {
-        // Attach a div outside the dropdown to act as an outside element
         render(
             <>
                 <div data-testid="outside">Outside Element</div>
@@ -40,13 +40,9 @@ describe('Dropdown Component', () => {
                 </Dropdown>
             </>
         );
-        // Open the dropdown
         fireEvent.click(screen.getByText('Open Dropdown'));
-        // Click outside the dropdown
         fireEvent.mouseDown(screen.getByTestId('outside'));
-        // Expect the dropdown to close
         expect(screen.queryByText('Dropdown Content')).not.toBeInTheDocument();
     });
 
-    // You can add more tests to check for keyboard interactions, accessibility, etc.
 });

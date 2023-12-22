@@ -1,9 +1,10 @@
 import { render } from '@testing-library/react';
-import DotsLoader from '.';
+import { DotsLoader } from '.';
+
 
 describe('DotsLoader Component', () => {
     it('renders correctly', () => {
         const { container } = render(<DotsLoader />);
-        expect(container.firstChild).toHaveClass('DotsLoader');
+        expect(container.firstChild).toHaveClass('dotsLoader');
     });
 });

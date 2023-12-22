@@ -1,0 +1,38 @@
+
+.nav {
+    color: darkslategray;
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 0px;
+    height: var(--topbar-height);
+    z-index: 1100;
+    border-bottom: 1px solid rgb(242, 244, 247);
+    .logoSection {
+        display: flex;
+        align-items: stretch;
+        img {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+    .actionsSection {
+        display: flex;
+        align-items: stretch;
+
+        span {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+}

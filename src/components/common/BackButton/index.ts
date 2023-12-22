@@ -1,3 +1,1 @@
-import BackButton from "./component";
-
-export { BackButton };
+export { default } from './component';

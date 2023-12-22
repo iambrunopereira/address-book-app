@@ -3,17 +3,20 @@ import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useState } from 'react';
 import Box from '../common/Box';
 import Button from '../common/Button';
-import styles from './component.module.scss';
 import { DotsLoader } from '../common/DotsLoader';
+import styles from './component.module.scss';
+
 interface Props {
     onSubmitHandler: (email: string, password:string) => void;
     error: string;
     errorHandler: Dispatch<SetStateAction<string>>;
     isLoading: boolean;
 }
-const LoginFormComponent: React.FC<Props> = ({onSubmitHandler, error, errorHandler, isLoading}) => {
+
+const SignupFormComponent: React.FC<Props> = ({onSubmitHandler, error, errorHandler, isLoading}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const router = useRouter();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,11 +24,15 @@ const LoginFormComponent: React.FC<Props> = ({onSubmitHandler, error, errorHandl
 
         errorHandler('');
 
-        if (!email || !password) {
-            errorHandler('Email and password are required');
+        if (!email || !password || !passwordConfirmation) {
+            errorHandler('All the fields are required');
             return;
         }
-
+        if (password !== passwordConfirmation) {
+            errorHandler('The passwords are not equal');
+            return;
+        }
+        
         onSubmitHandler(email, password)
     };
 
@@ -53,10 +60,20 @@ const LoginFormComponent: React.FC<Props> = ({onSubmitHandler, error, errorHandl
                             required
                         />
                     </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="passwordConfirmation">Password Confirmation</label>
+                        <input
+                            type="password"
+                            id="passwordConfirmation"
+                            value={passwordConfirmation}
+                            onChange={e => setPasswordConfirmation(e.target.value)}
+                            required
+                        />
+                    </div>
                     {error && <div className={styles.errorMessage}>{error}</div>}
-                    {!isLoading && <Box flex flexDirection='row' justifyContent='space-between' style={{marginTop: '1rem'}}>
-                        <Button variant='primary' type="submit">Login</Button>
-                        <Button variant='secondary' onClick={() => router.push('/signup')} style={{marginLeft: '1rem'}}>Signup</Button>
+                    {!isLoading &&  <Box flex flexDirection='row' justifyContent='space-between' style={{marginTop: '1rem'}}>
+                        <Button variant='primary' type="submit">Create</Button>
+                        <Button variant='secondary' onClick={() => router.push('/login')} style={{marginLeft: '1rem'}}>Login</Button>
                     </Box>}
                     {isLoading && <Box flex flexDirection='row' justifyContent='space-between' style={{marginTop: '1rem'}}>
                         <DotsLoader />
@@ -67,4 +84,4 @@ const LoginFormComponent: React.FC<Props> = ({onSubmitHandler, error, errorHandl
     );
 };
 
-export default LoginFormComponent;
+export default SignupFormComponent;

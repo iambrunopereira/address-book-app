@@ -15,7 +15,16 @@
         color: white;
         border: none;
     }
-    
+    &.menu {
+        background-color: lightgrey;
+        color: black;
+        border: none;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            background-color: rgba(169, 169, 169, 0.9);
+        }
+    }
     &.danger {
         background-color: red;
         color: white;

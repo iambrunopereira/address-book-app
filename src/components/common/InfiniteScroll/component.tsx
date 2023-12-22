@@ -13,7 +13,7 @@ const InfiniteScroll = ({ hasMore, isLoading, loadMore, children }: InfiniteScro
     const observer = useRef<IntersectionObserver | null>(null);
     const lastElementRef = useCallback(
         (node: HTMLElement | null) => {
-            if (isLoading) return; // Prevent loadMore from being called repeatedly
+            if (isLoading) return; 
             if (observer.current) observer.current.disconnect();
             observer.current = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && hasMore) {

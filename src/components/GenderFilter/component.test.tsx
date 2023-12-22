@@ -1,29 +1,28 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import NationalitiesSelector from '.';
+import GenderFilter from '.';
 
-describe('NationalitiesSelector Component', () => {
-    it('renders correctly', () => {
-        render(<NationalitiesSelector />);
-        expect(screen.getByText('Select Nationalities')).toBeInTheDocument();
+describe('<GenderFilter />', () => {
+    it('should call onChange with the correct value when an option is selected', () => {
+      const handleChange = jest.fn();
+      render(<GenderFilter onChange={handleChange} />);
+  
+      const maleRadio = screen.getByLabelText('Male');
+      fireEvent.click(maleRadio);
+      
+      expect(handleChange).toHaveBeenCalledWith('male');
     });
-
-    it('displays multiple options', () => {
-        render(<NationalitiesSelector />);
-        const options = screen.getAllByRole('option'); // Adjust this if your component uses different roles or tags
-        expect(options.length).toBeGreaterThan(1);
+  
+    it('should default to "all" if no defaultValue is provided', () => {
+      render(<GenderFilter onChange={() => {}} />);
+  
+      const allRadio = screen.getByLabelText('All');
+      expect(allRadio).toBeChecked();
     });
-
-    it('allows multiple selections', () => {
-        render(<NationalitiesSelector />);
-        const optionOne = screen.getByText('United States');
-        const optionTwo = screen.getByText('United Kingdom');
-
-        fireEvent.click(optionOne);
-        fireEvent.click(optionTwo);
-
-        expect(optionOne).toHaveAttribute('aria-selected', 'true');
-        expect(optionTwo).toHaveAttribute('aria-selected', 'true');
+  
+    it('should respect the defaultValue prop', () => {
+      render(<GenderFilter defaultValue="female" onChange={() => {}} />);
+  
+      const femaleRadio = screen.getByLabelText('Female');
+      expect(femaleRadio).toBeChecked();
     });
-
-    // Additional tests for checking if onChange handler is called can be added here
-});
+  });

@@ -1,5 +1,4 @@
 
-// Define a type for the Box props
 type BoxProps = {
     children: React.ReactNode;
     elementType?: keyof JSX.IntrinsicElements;
@@ -10,7 +9,7 @@ type BoxProps = {
     justifyContent?: 'center' | 'start' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
     alignItems?: 'center' | 'start' | 'end' | 'stretch' | 'baseline';
     style?: React.CSSProperties;
-    [x: string]: any; // for additional props
+    [x: string]: any; 
 };
 
 const Box = ({

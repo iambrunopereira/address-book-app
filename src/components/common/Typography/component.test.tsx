@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Typography from '.';
+import { Typography } from '.';
 
 describe('Typography Component', () => {
     it('renders h1 variant correctly', () => {
@@ -23,8 +23,8 @@ describe('Typography Component', () => {
     it('renders with default variant when none is provided', () => {
         render(<Typography>Default Text</Typography>);
         const defaultElement = screen.getByText('Default Text');
-        expect(defaultElement.tagName).toBe('P'); // Default is 'body1' which uses 'p' tag
+        expect(defaultElement.tagName).toBe('P');
     });
 
-    // Additional tests for className and other props can be added here
+   
 });

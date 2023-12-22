@@ -1,29 +1,34 @@
 .h1 {
-    font-size: 2em; /* example size, adjust as needed */
+    font-size: 2rem; /* example size, adjust as needed */
     font-weight: bold;
 }
 
 .h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
 .h3 {
-    font-size: 1.17em;
+    font-size: 1.17rem;
+    font-weight: bold;
+}
+
+.h4 {
+    font-size: 1rem;
     font-weight: bold;
 }
 
 .body1 {
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: normal;
 }
 
 .body2 {
-    font-size: 0.875em;
+    font-size: 0.875rem;
     font-weight: normal;
 }
 
 .caption {
-    font-size: 0.75em;
+    font-size: 0.75rem;
     font-weight: normal;
 }

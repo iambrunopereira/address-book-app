@@ -1,25 +1,44 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import MultiSelector from './MultiSelector';
+import { fireEvent, render, screen } from '@testing-library/react';
+import MultiSelector from './component';
 
-describe('MultiSelector Component', () => {
-    const options = [
-        { value: 'us', label: 'United States' },
-        { value: 'uk', label: 'United Kingdom' },
-        // Add more options as needed
-    ];
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+  { value: 'option3', label: 'Option 3' },
+];
 
-    it('displays selected values', () => {
-        render(<MultiSelector options={options} selectedValues={['us']} onChange={() => {}} />);
-        expect(screen.getByText('United States')).toBeInTheDocument();
-    });
-
-    it('shows options on click', () => {
-        render(<MultiSelector options={options} selectedValues={[]} onChange={() => {}} />);
-        fireEvent.click(screen.getByText(''));
-        options.forEach(option => {
-            expect(screen.getByText(option.label)).toBeInTheDocument();
-        });
-    });
-
-    // Additional tests for selecting/deselecting options
+test('renders MultiSelector component', () => {
+  render(<MultiSelector dataTestId="multi-selector" options={options} selectedValues={[]} onChange={() => {}} />);
+  const multiSelectorElement = screen.getByTestId('multi-selector');
+  expect(multiSelectorElement).toBeInTheDocument();
 });
+
+test('displays selected values', () => {
+  const selectedValues = ['option1', 'option2'];
+  render(<MultiSelector dataTestId="multi-selector" options={options} selectedValues={selectedValues} onChange={() => {}} />);
+  const selectedItemsElement = screen.getByTestId('multi-selector-selected-items');
+  expect(selectedItemsElement).toHaveTextContent('option1, option2');
+});
+
+test('toggles options list', () => {
+  render(<MultiSelector dataTestId="multi-selector" options={options} selectedValues={[]} onChange={() => {}} />);
+  const selectedItemsElement = screen.getByTestId('multi-selector-selected-items');
+  fireEvent.click(selectedItemsElement);
+  const optionsListElement = screen.getByTestId('multi-selector-options-list');
+  
+  expect(optionsListElement).toBeInTheDocument();
+});
+
+
+test('calls onChange when an option is selected', () => {
+    const handleChange = jest.fn();
+    render(<MultiSelector dataTestId="multi-selector" options={options} selectedValues={[]} onChange={handleChange} />);
+    const selectedItemsElement = screen.getByTestId('multi-selector-selected-items');
+    fireEvent.click(selectedItemsElement);
+    const optionsListElement = screen.getByTestId('multi-selector-options-list');
+    fireEvent.click(optionsListElement); 
+  
+    const optionElement = screen.getByText('Option 1');
+    fireEvent.click(optionElement); 
+  
+    expect(handleChange).toHaveBeenCalledWith(['option1']);

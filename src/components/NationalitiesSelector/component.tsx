@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import MultiSelector from '../common/MultiSelector/component';
+import { useTranslation } from 'react-i18next';
 
 type NationalitiesSelectorProps = {
     onChange: (value: string[]) => void;
@@ -9,6 +10,7 @@ type NationalitiesSelectorProps = {
 
 const NationalitiesSelector = ({defaultValue, onChange}: NationalitiesSelectorProps ) => {
     const [selectedNationalities, setSelectedNationalities] = useState<string[]>(defaultValue ?? []);
+    const { t } = useTranslation();
     const nationalities = [
         { value: 'CH', label: 'CH' },
         { value: 'ES', label: 'ES' },
@@ -22,7 +24,7 @@ const NationalitiesSelector = ({defaultValue, onChange}: NationalitiesSelectorPr
 
     return (
         <div>
-            <h3>Select Nationalities</h3>
+            <h3>{t(`filters__nationalities_input_label`)}</h3>
             <MultiSelector 
                 options={nationalities} 
                 selectedValues={selectedNationalities} 

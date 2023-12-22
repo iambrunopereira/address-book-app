@@ -25,5 +25,5 @@ describe('Grid Component', () => {
         expect(container.firstChild).toHaveStyle('align-items: center');
     });
 
-    // Additional tests for other props can be added here
+  
 });
