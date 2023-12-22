@@ -1,4 +1,5 @@
-import LoginForm from "@/components/LoginForm/component";
+
+import LoginFormContainer from "@/components/LoginForm/container";
 import { config } from "@/configs";
 import { Metadata, NextPage } from "next/types";
 
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 const Page: NextPage = () => {
   return (
-    <LoginForm />
+    <LoginFormContainer />
   );
 };
 
