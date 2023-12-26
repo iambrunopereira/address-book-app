@@ -18,6 +18,7 @@ const reducers = {
   setGender: (state: SettingsState, action: PayloadAction<Gender>) => {
     state.gender = action.payload;
   },
+  resetSettings: () => initialState,
 };
 
 const settingsSlice = createSlice({
@@ -26,5 +27,5 @@ const settingsSlice = createSlice({
   reducers,
 });
 
-export const { menuToggle, setNationalities, setGender } = settingsSlice.actions;
+export const { menuToggle, setNationalities, setGender, resetSettings } = settingsSlice.actions;
 export default settingsSlice.reducer;
