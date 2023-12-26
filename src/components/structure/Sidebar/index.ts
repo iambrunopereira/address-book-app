@@ -1,1 +1,1 @@
-export { SplashScreen } from "./component";
+export { Sidebar } from "./component";

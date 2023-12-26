@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavBar } from '../NavBar/component';
-import { Sidebar } from '../Sidebar/component';
 import styles from './container.module.scss';
+import { Sidebar } from '../Sidebar';
 interface Props {
     children: React.ReactNode;
 }
